@@ -1,4 +1,4 @@
-package com.example.kopringapi
+package com.example.kopring.api
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

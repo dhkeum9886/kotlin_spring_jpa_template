@@ -1,4 +1,4 @@
-package com.example.kopringcore
+package com.example.kopring.core
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

@@ -1,15 +1,13 @@
-package com.example.kopringweb
+package com.example.kopring.web
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 
-// TODO https://techfox.tistory.com/3
-// TODo https://seosh817.tistory.com/7
-
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = ["com.example.kopring.core"])
+@EnableJpaAuditing
 class KopringWebApplication
 
 fun main(args: Array<String>) {
-    runApplication<KopringWebApplication>(*args)
+	runApplication<KopringWebApplication>(*args)
 }

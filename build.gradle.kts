@@ -20,41 +20,17 @@ configurations {
 }
 
 allprojects {
-    apply(plugin = "java")
-    apply(plugin = "org.springframework.boot")
+    group = "com.example.kopring"
+    version = "0.0.1-SNAPSHOT"
 
-    repositories {
-        mavenCentral()
-    }
-
-    tasks.withType<KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = "11"
-        }
-    }
-
-    tasks.withType<Test> {
-        useJUnitPlatform()
-    }
-}
-
-configurations {
-    all {
-        exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
-    }
-}
-
-subprojects {
     apply(plugin = "java")
     apply(plugin = "java-library")
     apply(plugin = "idea")
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "kotlin-jpa")
+    apply(plugin = "kotlin-spring")
 
-    group = "com.example"
-    version = "0.0.1-SNAPSHOT"
     java.sourceCompatibility = JavaVersion.VERSION_11
     java.targetCompatibility = JavaVersion.VERSION_11
 
@@ -71,6 +47,10 @@ subprojects {
     }
 
     dependencies {
+        implementation ("org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16")
+        implementation ("org.mariadb.jdbc:mariadb-java-client:2.6.2")
+        implementation("io.pebbletemplates:pebble-spring-boot-starter:3.1.5")
+        implementation("org.springframework.boot:spring-boot-starter")
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.springframework.boot:spring-boot-starter-web-services")
@@ -96,5 +76,22 @@ subprojects {
         implementation("org.apache.logging.log4j:log4j-jul:2.17.1")
         implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.17.1")
         implementation("org.apache.logging.log4j:log4j-1.2-api:2.17.1")
+    }
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = "11"
+        }
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
+}
+
+configurations {
+    all {
+        exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
     }
 }
